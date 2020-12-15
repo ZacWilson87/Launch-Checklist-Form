@@ -11,7 +11,7 @@ function whenLoad() {
   //listens for user to click submit button and then validates input
   formSubmit.addEventListener("submit", (e) => {
     const hasNum = /\d/;
-    const faultyForms = document.getElementById("faultyItems");
+    const faultyItems = document.getElementById("faultyItems");
     let pilotStatus = document.getElementById("pilotStatus");
     let copilotStatus = document.getElementById("copilotStatus");
     let fuelStatus = document.getElementById("fuelStatus");
@@ -90,14 +90,10 @@ function whenLoad() {
       allReady++;
     }
     // if all checks are good then set launchStatus to 'ready...'
-    if (allReady == 4) {
-      launchStatus.style.color = "green";
-      launchStatus.textContent = "Ready for launch!";
-    }
-
+    
     e.preventDefault();
 
-    faultyForms.style.visibility = "visible";
+    faultyItems.style.visibility = "visible";
     fetch("https://handlers.education.launchcode.org/static/planets.json")
       .then((res) => {
         return res.json();
@@ -115,6 +111,12 @@ function whenLoad() {
         </ol>
         <img src="${destination[randoDest].image}">`;
       });
+      if (allReady == 4) {
+        faultyItems.style.visibility = 'hidden';
+        launchStatus.style.color = "green";
+        launchStatus.textContent = "Ready for launch!";
+      }
+  
   });
 }
 window.onLoad = whenLoad();
