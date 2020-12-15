@@ -89,7 +89,7 @@ function whenLoad() {
       cargoStatus.style.color = "green";
       allReady++;
     }
-    // if all checks are good then set launchStatus to 'ready...'
+    
     
     e.preventDefault();
 
@@ -111,6 +111,7 @@ function whenLoad() {
         </ol>
         <img src="${destination[randoDest].image}">`;
       });
+      // if all checks are good then set launchStatus to 'ready...'
       if (allReady == 4) {
         faultyItems.style.visibility = 'hidden';
         launchStatus.style.color = "green";
